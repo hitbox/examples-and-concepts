@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% from "render.html" import structurize %}
+
+
+{% block main %}
+<div>
+    <a href="{{ url_for('main.dragdrop') }}">dragdrop</a>
+</div>
+<div>
+    <a href="{{ url_for('main.dragdrop2') }}">dragdrop2</a>
+</div>
+<pre>data={{ data }}</pre>
+<pre>model_data={{ model_data }}</pre>
+<div>
+    {{ structurize(data) }}
+</div>
+{% endblock main %}

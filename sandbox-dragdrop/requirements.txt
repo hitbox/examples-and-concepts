@@ -1,0 +1,7 @@
+flask
+flask-sqlalchemy
+marshmallow-sqlalchemy
+psycopg
+sqlalchemy
+sqlalchemy_utils
+wtforms

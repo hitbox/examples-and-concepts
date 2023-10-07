@@ -1,0 +1,69 @@
+<div>
+    <div><!-- empty elements to verify they are ignored --></div>
+    <div></div>
+    <div></div>
+    <div>
+        <div></div>
+        <div></div>
+        <!-- pads -->
+        <div type="dropzone" key="pads">
+            <div type="draggable" data="{'id':'0', 'name':'pad-0'}"></div>
+            <div type="draggable" data="{'id':'1', 'name':'pad-1'}">
+                <div type="draggable" data="{'id':'2', 'name':'truck-2'}">
+                    <div type="dropzone" key="operators"></div>
+                </div>
+            </div>
+            <div type="draggable" data="{'id':'2', 'name':'pad-2'}"></div>
+        </div>
+        <!-- trucks -->
+        <div type="dropzone" key="trucks">
+            <div type="draggable" data="{'id':'0', 'name':'truck-0'}">
+                <div type="dropzone" key="operators">
+                    <!-- empty dropzones will exist for a place to drop draggables -->
+                </div>
+            </div>
+            <div type="draggable" data="{'id':'1', 'name':'truck-1'}">
+                <div>Id 1</div>
+                <div>Truck 1</div>
+                <div type="dropzone" key="operators"><!-- how to specify type of operator? -->
+                    <div type="draggable" data="{'id':'2', 'name':'worker-2'}">
+                        <div>Id 2</div>
+                        <div>Worker 2</div>
+                    </div>
+                </div>
+            </div>
+            <!-- draggable with dropzones -->
+            <div type="draggable" data="{'id':'3', 'name':'truck-3'}">
+                <div type="dropzone" key="operators">
+                    <div type="draggable" data="{'id':'3', 'name':'worker-3'}">
+                        <div>Id 3</div>
+                        <div>Worker 3</div>
+                    </div>
+                    <div type="draggable" data="{'id':'5', 'name':'worker-5'}">
+                        <div>Id 5</div>
+                        <div>Worker 5</div>
+                    </div>
+                </div>
+            </div>
+            <div type="draggable" data="{'id':'4', 'name':'truck-4'}">
+                <div type="dropzone" key="operators"></div>
+            </div>
+        </div>
+        <!-- workers -->
+        <div type="dropzone" key="workers">
+            <div type="draggable" data="{'id':'0', 'name':'worker-0'}">
+                <div>Id 0</div>
+                <div>Worker 0</div>
+                <!-- no dropzones inside workers -->
+            </div>
+            <div type="draggable" data="{'id':'1', 'name':'worker-1'}">
+                <div>Id 1</div>
+                <div>Worker 1</div>
+            </div>
+            <div type="draggable" data="{'id':'4', 'name':'worker-4'}">
+                <div>Id 4</div>
+                <div>Worker 4</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+form {
+    margin: 1rem 0;
+}
+
+input:not([type=submit]) {
+    max-width: 75px;
+}
+
+button,
+input[type=submit] {
+    /* button */
+    padding: 4px 8px;
+    min-width: 125px;
+    min-height: 40px;
+}
+
+pre {
+    white-space: pre-wrap;
+    font-size: 1rem;
+}
+
+.card {
+    margin: 8px;
+}
+
+.title {
+    text-align: center;
+    margin: 4px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-container,
+[data-dropzone="true"] {
+    display: flex;
+    border: 1px solid black;
+    justify-content: start;
+}
+
+/* TODO */
+/* Want to highlight with border the inner-most draggable on hover. Problem is
+ * they both light up. */
+
+[draggable="true"]:hover {
+    /* hovering a draggable element */
+    cursor: pointer;
+}
+
+[data-dropzone="true"] {
+    /* minimum size to ensure a place to drop */
+    min-width: 100px;
+    min-height: 50px;
+}
+
+[data-dropzone="true"].dragging {
+    border-style: dashed;
+    border-color: chocolate;
+}
+
+[data-dropzone="true"].dragover {
+    /* highlight on dragover */
+    /* dragover class is toggled by JS */
+    border-style: solid;
+    border-color: red;
+}
+
+.sideblocks {
+    display: flex;
+    justify-content: center;
+}
+
+.view {
+    height: 95vh;
+    max-width: 40vw;
+    overflow: scroll;
+}
+
+.spread {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: end; /* bottom */
+}
+
+.errors {
+    color: red;
+}

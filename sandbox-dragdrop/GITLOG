@@ -1,0 +1,77 @@
+commit 5bc8fb7f9b0d619d097925881b31d62fd0239078
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Wed Jul 5 08:16:15 2023 -0400
+
+    replace unused schema with simple json
+
+commit b21386975f426e67a460f96cd17a9c35735a5ca3
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Wed Jul 5 07:30:33 2023 -0400
+
+    remove unused code
+
+commit 55e60be942778d57e52d948695d08838fcde5a3e
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Wed Jul 5 07:16:06 2023 -0400
+
+    js: remove unused function
+
+commit 9e5aaa697cf67ee05ffae7fc6c40318871b687da
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Wed Jul 5 07:14:31 2023 -0400
+
+    update docstring
+
+commit b9b42b5067edeb8fca8da6213da26ef1dc794147
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Sun Jul 2 09:07:55 2023 -0400
+
+    update readme
+
+commit e1ff7664e863b9256a14b840fe27ef2c000a9ab0
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Sun Jul 2 09:07:44 2023 -0400
+
+    formatting
+
+commit 387add54b06f49b9de077bc85c36b9fbe3198046
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Sun Jul 2 08:23:43 2023 -0400
+
+    first drag-drop working
+    
+    - javascript: added third walk function to wrap oddball dropzones like
+      the driver/bucket operators.
+    - submit json through form.
+    - specific load functions to update the database. this should be
+      improved.
+
+commit bf63baaf30ecc55f1e64081cc6b37054c80d3be8
+Author: Carl L. Harris <Carl.Harris@airborneglobal.com>
+Date:   Thu Jun 29 09:21:57 2023 -0400
+
+    default redirect to view that works
+
+commit 0a916331b0c77f806a94c4e10b8b8f5eaad4f8fe
+Author: Carl L. Harris <Carl.Harris@airborneglobal.com>
+Date:   Thu Jun 29 09:21:29 2023 -0400
+
+    fix name error
+
+commit 66942236a35173a85454f5f70bab354b438d39d3
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Thu Jun 29 08:51:53 2023 -0400
+
+    dialing readme in
+
+commit d1fb45af2270011412a775d8352683bfc98b0cef
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Thu Jun 29 08:49:52 2023 -0400
+
+    first revision
+
+commit 27b5edb15fc8d8f8094b7dddcf487c2185bfe98b
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Thu Jun 29 08:44:10 2023 -0400
+
+    init

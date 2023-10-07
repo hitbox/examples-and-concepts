@@ -1,0 +1,39 @@
+
+
+{% macro render_card(header='', body='', footer='') %}
+<article class="card">
+    <header>
+        <h1>{{ header }}</h1>
+    </header>
+    <p>{{ body }}</p>
+    <footer>{{ footer }}</footer>
+</article>
+{% endmacro %}
+
+
+{% macro render_form(form) %}
+    {% for field in form %}
+        {{ field }}
+    {% endfor %}
+{% endmacro %}
+
+
+{% macro render_dropzone_attrs(type) -%}
+data-dropzone="true" data-dropzone-type="{{ type }}"
+{%- endmacro %}
+
+
+{% macro structurize(obj) %}
+{% if obj is mapping %}
+    <dl>{% for key, value in obj|items %}
+        <dt>{{ key }}</dt>
+        <dd>{{ structurize(value) }}</dd>
+    {% endfor %}</dl>
+{% elif obj is not string and obj is iterable %}
+    <ul>{% for thing in obj %}
+        <li>{{ structurize(thing) }}</li>{% endfor %}
+    </ul>
+{% else %}
+    {{ obj }}
+{% endif %}
+{% endmacro %}

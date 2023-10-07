@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% from "render.html" import render_form %}
+{% from "render.html" import render_dropzone_attrs %}
+
+
+{% block main %}
+{% set form_id = "dragdrop_form" %}
+<form id="{{ form_id }}" action="{{ url_for('main.dragdrop') }}" method="POST"></form>
+<div class="sideblocks">
+    <div>
+        {% if submitted %}<pre>{{ submitted }}</pre>{% endif %}
+        <div class="spread">
+            <div>
+                {% if form.errors %}<div class="errors">{{ form.errors }}</div>{% endif %}
+                {{ form.dragdrop_json(form=form_id) }}
+                {{ form.save(form=form_id) }}
+            </div>
+            <button id="dump-drag-drop">Dump</button>
+        </div>
+        <h3>Pads</h3>
+        {{ pads_dropzone }}
+        <h3>Trucks</h3>
+        {{ trucks_dropzone }}
+        <h3>Workers</h3>
+        {{ workers_dropzone }}
+    </div>
+</div>
+{% endblock %}
