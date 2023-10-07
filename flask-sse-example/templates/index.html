@@ -1,0 +1,22 @@
+{% extends "skeleton.html" %}
+
+{% block title %}Flask Server Sent Events{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+
+<script>
+var urls = { message: "{{ MESSAGE | safe }}", events: "{{ EVENTS | safe }}" };
+</script>
+
+<script src="{{ url_for('static', filename="index.js") }}"></script>
+{% endblock %}
+
+{% block body %}
+<div id=main>
+    <div id=messageList></div>
+    <textarea id=newMessage rows=4></textarea>
+    <button onclick="send(document.getElementById('newMessage').value); return false;">Send</button>
+</div>
+{% endblock %}

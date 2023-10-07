@@ -1,0 +1,22 @@
+#main {
+    margin: 0 auto;
+}
+
+#main, textarea, button {
+    width: 500px;
+}
+
+button {
+    height: 50px;
+}
+
+.flash {
+    background-color: yellow;
+}
+
+.message {
+    margin-bottom: 1rem;
+    white-space: pre-line;
+    border: 1px solid #ccc;
+    padding: .5rem;
+}
