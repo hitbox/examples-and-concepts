@@ -1,0 +1,18 @@
+{% extends "_dash-okta-base.html" %}
+
+
+{% block main %}
+<h2>Fake Okta Login</h2>
+<p>No authentication. The password is ignored.</p>
+<form method="POST">
+    <p>
+        <label for="username">Username</label>
+        <input id="username" name="username" required>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+    </p>
+    <button>Login</button>
+</form>
+{% endblock main %}

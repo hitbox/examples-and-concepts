@@ -1,0 +1,8 @@
+{% extends "_dash-okta-base.html" %}
+
+
+{% block main %}
+<h2>Who am I?</h2>
+<p>You are logged in as <code>{{ current_user.username }}</code>.</p>
+<a href="{{ url_for('.logout') }}">Logout</a>
+{% endblock main %}
