@@ -1,0 +1,101 @@
+commit 2b5f91268849303e801096336ae04e4125431942
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Mar 1 04:21:30 2022 -0500
+
+    snapshot for archtool demo
+
+commit 616c9ae6453aa7f1e238ee29a8ea0d8f93ebfac2
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Thu Feb 24 04:07:16 2022 -0500
+
+    snapshot
+
+commit 42bb781a68398639816b6a12334fef956be9e421
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Thu Feb 10 07:09:25 2022 -0500
+
+    dev snapshot for transfer
+
+commit d75fd0144465032b94f3451c5c8009d30c6ef5f4
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Dec 14 03:07:25 2021 -0500
+
+    snapshot: selectsearch.js
+
+commit b47d877307adc6ad1180286cd8fb3d9d4d48e23c
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 8 11:15:23 2021 -0500
+
+    chevron-down svg, better css and cleanup
+
+commit 86ea8604f9ffc11272c0020beb305688a53be0cd
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 8 09:26:02 2021 -0500
+
+    allow search input to select all
+
+commit c77c6ed83f8c613ba302f23b779e41adc83803a6
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 8 09:16:25 2021 -0500
+
+    allow .options-list to be the scrollable part
+
+commit 1cf77f4ed37dd1b3ef1097e7537ea3d16953c811
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 8 09:14:10 2021 -0500
+
+    more options and css to test making only options-list scroll
+
+commit bef7daa5b60c808964f28bc7e7430bc6bc0a34ad
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 1 07:48:42 2021 -0500
+
+    disable use as module
+
+commit 14d46f5e64cedeb84845eecfffa1fddaae4c329a
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 1 06:06:20 2021 -0500
+
+    strip more css
+
+commit 564bf9af47375c357ee65b277e82409ceda42d35
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 1 05:59:16 2021 -0500
+
+    fewer and less opinionated css
+
+commit e373b023cf0e2e2346a7ab3a5a4dac5a95b2e520
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Dec 1 05:33:10 2021 -0500
+
+    make as module, snapshot of cleaning css
+
+commit 0f235615da6408e145ba1aa3bb6c39f44870ea61
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Nov 30 11:22:49 2021 -0500
+
+    add .gitignore, reset.css note unnecessary
+
+commit 0005f3820af23136d03ddd54f0a7aea78dae44d9
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Nov 30 04:51:31 2021 -0500
+
+    fix readme
+
+commit 94381e18c89f7bd7a7825308afd3b1a871984af3
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Nov 30 04:49:41 2021 -0500
+
+    more readme
+
+commit 9ff9f965f12eb6aa6dd1e4d9b9fdd00fddf873a1
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Nov 30 04:48:37 2021 -0500
+
+    add readme
+
+commit 0e4947aa5f3784feaf6a6136e644c35af13a6408
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Nov 30 04:20:44 2021 -0500
+
+    init
