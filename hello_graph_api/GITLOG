@@ -1,0 +1,43 @@
+commit d1a219cecf78c0d1cb142aa0174e60d028ed412a
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Sep 21 02:44:17 2022 -0400
+
+    update for incident release
+    
+    - separate, optional, schema
+    - sample config with documentation
+    - updated README with note about ctrl+break
+
+commit 4dfc1aa104da712a3b52489ee437df76aaa7c7c9
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Wed Sep 21 00:48:04 2022 -0400
+
+    added, optional, marshmallow deserialization
+
+commit 520b4feb42a8324369e1ed2abaeda057ba87f611
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Sep 20 09:44:09 2022 -0400
+
+    added limit option
+
+commit cf71bcbba5a466134abbe3cc3777cd41dc5df650
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Tue Sep 20 04:03:45 2022 -0400
+
+    added more options
+    
+    - optional output to file
+    - optional config logging
+    - config endpoint url
+
+commit b3c51929f10aef9b175023789ddebf9c7515aa4d
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Fri Sep 16 05:01:58 2022 -0400
+
+    add how to run
+
+commit 2751f71dddb2535017900d89d6a5792b1e314da7
+Author: Carl Harris <elgoogemail2007@gmail.com>
+Date:   Fri Sep 16 04:54:32 2022 -0400
+
+    init
