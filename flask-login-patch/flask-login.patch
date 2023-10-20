@@ -1,0 +1,293 @@
+diff -ruN flask_login/__about__.py flask_login/__about__.py
+--- flask_login/__about__.py	2023-10-20 01:38:27.967410798 -0400
++++ flask_login/__about__.py	2023-05-07 21:43:39.685369103 -0400
+@@ -1,7 +1,7 @@
+ __title__ = "Flask-Login"
+ __description__ = "User session management for Flask"
+ __url__ = "https://github.com/maxcountryman/flask-login"
+-__version_info__ = ("0", "6", "2")
++__version_info__ = ("0", "7", "0")
+ __version__ = ".".join(__version_info__)
+ __author__ = "Matthew Frazier"
+ __author_email__ = "leafstormrush@gmail.com"
+diff -ruN flask_login/config.py flask_login/config.py
+--- flask_login/config.py	2023-10-20 01:38:27.967410798 -0400
++++ flask_login/config.py	2023-05-07 21:43:39.685369103 -0400
+@@ -28,12 +28,9 @@
+ #: reauthenticate.
+ REFRESH_MESSAGE_CATEGORY = "message"
+ 
+-#: The default attribute to retreive the str id of the user
++#: The default attribute to retrieve the str id of the user
+ ID_ATTRIBUTE = "get_id"
+ 
+-#: Default name of the auth header (``Authorization``)
+-AUTH_HEADER_NAME = "Authorization"
+-
+ #: A set of session keys that are populated by Flask-Login. Use this set to
+ #: purge keys safely and accurately.
+ SESSION_KEYS = {
+diff -ruN flask_login/__init__.py flask_login/__init__.py
+--- flask_login/__init__.py	2023-10-20 01:38:27.967410798 -0400
++++ flask_login/__init__.py	2023-05-07 21:43:39.685369103 -0400
+@@ -1,5 +1,4 @@
+ from .__about__ import __version__
+-from .config import AUTH_HEADER_NAME
+ from .config import COOKIE_DURATION
+ from .config import COOKIE_HTTPONLY
+ from .config import COOKIE_NAME
+@@ -38,7 +37,6 @@
+ 
+ __all__ = [
+     "__version__",
+-    "AUTH_HEADER_NAME",
+     "COOKIE_DURATION",
+     "COOKIE_HTTPONLY",
+     "COOKIE_NAME",
+@@ -75,20 +73,3 @@
+     "make_next_param",
+     "set_login_view",
+ ]
+-
+-
+-def __getattr__(name):
+-    if name == "user_loaded_from_header":
+-        import warnings
+-        from .signals import _user_loaded_from_header
+-
+-        warnings.warn(
+-            "'user_loaded_from_header' is deprecated and will be"
+-            " removed in Flask-Login 0.7. Use"
+-            " 'user_loaded_from_request' instead.",
+-            DeprecationWarning,
+-            stacklevel=2,
+-        )
+-        return _user_loaded_from_header
+-
+-    raise AttributeError(name)
+diff -ruN flask_login/login_manager.py flask_login/login_manager.py
+--- flask_login/login_manager.py	2023-10-20 01:38:27.967410798 -0400
++++ flask_login/login_manager.py	2023-05-07 21:43:39.685369103 -0400
+@@ -5,12 +5,10 @@
+ from flask import current_app
+ from flask import flash
+ from flask import g
+-from flask import has_app_context
+ from flask import redirect
+ from flask import request
+ from flask import session
+ 
+-from .config import AUTH_HEADER_NAME
+ from .config import COOKIE_DURATION
+ from .config import COOKIE_HTTPONLY
+ from .config import COOKIE_NAME
+@@ -97,8 +95,6 @@
+ 
+         self._user_callback = None
+ 
+-        self._header_callback = None
+-
+         self._request_callback = None
+ 
+         self._session_identifier_generator = _create_identifier
+@@ -106,21 +102,6 @@
+         if app is not None:
+             self.init_app(app, add_context_processor)
+ 
+-    def setup_app(self, app, add_context_processor=True):  # pragma: no cover
+-        """
+-        This method has been deprecated. Please use
+-        :meth:`LoginManager.init_app` instead.
+-        """
+-        import warnings
+-
+-        warnings.warn(
+-            "'setup_app' is deprecated and will be removed in"
+-            " Flask-Login 0.7. Use 'init_app' instead.",
+-            DeprecationWarning,
+-            stacklevel=2,
+-        )
+-        self.init_app(app, add_context_processor)
+-
+     def init_app(self, app, add_context_processor=True):
+         """
+         Configures an application. This registers an `after_request` call, and
+@@ -309,29 +290,6 @@
+ 
+         return redirect(redirect_url)
+ 
+-    def header_loader(self, callback):
+-        """
+-        This function has been deprecated. Please use
+-        :meth:`LoginManager.request_loader` instead.
+-
+-        This sets the callback for loading a user from a header value.
+-        The function you set should take an authentication token and
+-        return a user object, or `None` if the user does not exist.
+-
+-        :param callback: The callback for retrieving a user object.
+-        :type callback: callable
+-        """
+-        import warnings
+-
+-        warnings.warn(
+-            "'header_loader' is deprecated and will be removed in"
+-            " Flask-Login 0.7. Use 'request_loader' instead.",
+-            DeprecationWarning,
+-            stacklevel=2,
+-        )
+-        self._header_callback = callback
+-        return callback
+-
+     def _update_request_context_with_user(self, user=None):
+         """Store the given user as ctx.user."""
+ 
+@@ -367,7 +325,6 @@
+         if user is None:
+             config = current_app.config
+             cookie_name = config.get("REMEMBER_COOKIE_NAME", COOKIE_NAME)
+-            header_name = config.get("AUTH_HEADER_NAME", AUTH_HEADER_NAME)
+             has_cookie = (
+                 cookie_name in request.cookies and session.get("_remember") != "clear"
+             )
+@@ -376,9 +333,6 @@
+                 user = self._load_user_from_remember_cookie(cookie)
+             elif self._request_callback:
+                 user = self._load_user_from_request(request)
+-            elif header_name in request.headers:
+-                header = request.headers[header_name]
+-                user = self._load_user_from_header(header)
+ 
+         return self._update_request_context_with_user(user)
+ 
+@@ -424,18 +378,6 @@
+                 return user
+         return None
+ 
+-    def _load_user_from_header(self, header):
+-        if self._header_callback:
+-            user = self._header_callback(header)
+-            if user is not None:
+-                app = current_app._get_current_object()
+-
+-                from .signals import _user_loaded_from_header
+-
+-                _user_loaded_from_header.send(app, user=user)
+-                return user
+-        return None
+-
+     def _load_user_from_request(self, request):
+         if self._request_callback:
+             user = self._request_callback(request)
+@@ -510,34 +452,3 @@
+         domain = config.get("REMEMBER_COOKIE_DOMAIN")
+         path = config.get("REMEMBER_COOKIE_PATH", "/")
+         response.delete_cookie(cookie_name, domain=domain, path=path)
+-
+-    @property
+-    def _login_disabled(self):
+-        """Legacy property, use app.config['LOGIN_DISABLED'] instead."""
+-        import warnings
+-
+-        warnings.warn(
+-            "'_login_disabled' is deprecated and will be removed in"
+-            " Flask-Login 0.7. Use 'LOGIN_DISABLED' in 'app.config'"
+-            " instead.",
+-            DeprecationWarning,
+-            stacklevel=2,
+-        )
+-
+-        if has_app_context():
+-            return current_app.config.get("LOGIN_DISABLED", False)
+-        return False
+-
+-    @_login_disabled.setter
+-    def _login_disabled(self, newvalue):
+-        """Legacy property setter, use app.config['LOGIN_DISABLED'] instead."""
+-        import warnings
+-
+-        warnings.warn(
+-            "'_login_disabled' is deprecated and will be removed in"
+-            " Flask-Login 0.7. Use 'LOGIN_DISABLED' in 'app.config'"
+-            " instead.",
+-            DeprecationWarning,
+-            stacklevel=2,
+-        )
+-        current_app.config["LOGIN_DISABLED"] = newvalue
+Binary files flask_login/__pycache__/__about__.cpython-311.pyc and flask_login/__pycache__/__about__.cpython-311.pyc differ
+Binary files flask_login/__pycache__/config.cpython-311.pyc and flask_login/__pycache__/config.cpython-311.pyc differ
+Binary files flask_login/__pycache__/__init__.cpython-311.pyc and flask_login/__pycache__/__init__.cpython-311.pyc differ
+Binary files flask_login/__pycache__/login_manager.cpython-311.pyc and flask_login/__pycache__/login_manager.cpython-311.pyc differ
+Binary files flask_login/__pycache__/mixins.cpython-311.pyc and flask_login/__pycache__/mixins.cpython-311.pyc differ
+Binary files flask_login/__pycache__/signals.cpython-311.pyc and flask_login/__pycache__/signals.cpython-311.pyc differ
+Binary files flask_login/__pycache__/test_client.cpython-311.pyc and flask_login/__pycache__/test_client.cpython-311.pyc differ
+Binary files flask_login/__pycache__/utils.cpython-311.pyc and flask_login/__pycache__/utils.cpython-311.pyc differ
+diff -ruN flask_login/signals.py flask_login/signals.py
+--- flask_login/signals.py	2023-10-20 01:38:27.967410798 -0400
++++ flask_login/signals.py	2023-05-07 21:43:39.685369103 -0400
+@@ -14,10 +14,6 @@
+ #: is the sender), it is passed `user`, which is the user being reloaded.
+ user_loaded_from_cookie = _signals.signal("loaded-from-cookie")
+ 
+-#: Sent when the user is loaded from the header. In addition to the app (which
+-#: is the #: sender), it is passed `user`, which is the user being reloaded.
+-_user_loaded_from_header = _signals.signal("loaded-from-header")
+-
+ #: Sent when the user is loaded from the request. In addition to the app (which
+ #: is the #: sender), it is passed `user`, which is the user being reloaded.
+ user_loaded_from_request = _signals.signal("loaded-from-request")
+@@ -43,19 +39,3 @@
+ #: marked non-fresh or deleted. It receives no additional arguments besides
+ #: the app.
+ session_protected = _signals.signal("session-protected")
+-
+-
+-def __getattr__(name):
+-    if name == "user_loaded_from_header":
+-        import warnings
+-
+-        warnings.warn(
+-            "'user_loaded_from_header' is deprecated and will be"
+-            " removed in Flask-Login 0.7. Use"
+-            " 'user_loaded_from_request' instead.",
+-            DeprecationWarning,
+-            stacklevel=2,
+-        )
+-        return _user_loaded_from_header
+-
+-    raise AttributeError(name)
+diff -ruN flask_login/utils.py flask_login/utils.py
+--- flask_login/utils.py	2023-10-20 01:38:27.967410798 -0400
++++ flask_login/utils.py	2023-10-04 02:44:26.710790373 -0400
+@@ -1,6 +1,8 @@
+ import hmac
+ from functools import wraps
+ from hashlib import sha512
++from urllib.parse import parse_qs
++from urllib.parse import urlencode
+ from urllib.parse import urlparse
+ from urllib.parse import urlunparse
+ 
+@@ -11,8 +13,6 @@
+ from flask import session
+ from flask import url_for
+ from werkzeug.local import LocalProxy
+-from werkzeug.urls import url_decode
+-from werkzeug.urls import url_encode
+ 
+ from .config import COOKIE_NAME
+ from .config import EXEMPT_METHODS
+@@ -123,11 +123,11 @@
+         return base
+ 
+     parsed_result = urlparse(base)
+-    md = url_decode(parsed_result.query)
++    md = parse_qs(parsed_result.query)
+     md[next_field] = make_next_param(base, next_url)
+     netloc = current_app.config.get("FORCE_HOST_FOR_REDIRECTS") or parsed_result.netloc
+     parsed_result = parsed_result._replace(
+-        netloc=netloc, query=url_encode(md, sort=True)
++        netloc=netloc, query=urlencode(md, doseq=True)
+     )
+     return urlunparse(parsed_result)
+ 
