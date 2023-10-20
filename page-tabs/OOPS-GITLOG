@@ -1,0 +1,11 @@
+commit e53b1db158301733787e0da21a7124e1907315ee
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Wed Oct 18 00:00:58 2023 -0400
+
+    added static example of page tabs
+
+commit a554bc91bbe368f2dca8992fe21f4b29194ff89d
+Author: Carl Harris <hitbox@ryzen.com>
+Date:   Wed Oct 18 00:00:28 2023 -0400
+
+    init

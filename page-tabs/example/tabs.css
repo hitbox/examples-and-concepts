@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+}
+
+input[type=radio].tab {
+    display: none;
+}
+
+label[for].tab:hover {
+    cursor: pointer;
+    background: green;
+}
+
+.hidden {
+    display: none;
+}

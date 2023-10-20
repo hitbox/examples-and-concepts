@@ -1,0 +1,27 @@
+body {
+    font-family: sans-serif;
+}
+
+input[type=radio].tab {
+    display: none;
+}
+
+label[for].tab {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 4px;
+}
+
+label[for].tab:hover {
+    cursor: pointer;
+    background: DarkOrange;
+}
+
+label[for].tab.current {
+    background: green;
+}
+
+.hidden {
+    /* required for tabs */
+    display: none;
+}

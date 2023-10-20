@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">{% block html %}
+    <head>{% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="color-scheme" content="dark light">{# inform client color modes asap #}
+        <title>PageTabs Demo</title>
+        <link rel="icon" href="data:,">{# empty favicon #}
+        <link rel="stylesheet" href="{{ url_for('static', filename='pagetabs.css') }}">
+        <script src="{{ url_for('static', filename='tabs.js') }}"></script>
+    {% endblock head %}</head>
+    <body>
+        <main>{% block main %}{% endblock %}</main>
+    </body>
+{% endblock html %}</html>

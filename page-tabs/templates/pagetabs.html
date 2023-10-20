@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% macro render_tab_attrs(tab) %}id="{{ tab.data }}"{% if not tab.checked %} class="hidden"{% endif %}{% endmacro %}
+
+
+{% block main %}
+    {# usual render form #}
+    {{ pagetabs.form.tabs }}
+
+    {% for tab in pagetabs.form.tabs %}<div {{ render_tab_attrs(tab) }}>
+        {% if loop.index0 == 0 %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu scelerisque felis imperdiet proin fermentum. Diam sollicitudin tempor id eu nisl nunc mi. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Egestas erat imperdiet sed euismod. Tellus id interdum velit laoreet id donec. Lectus urna duis convallis convallis tellus. Ultricies mi eget mauris pharetra et ultrices neque ornare. Lorem donec massa sapien faucibus et molestie ac feugiat sed. Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Diam maecenas sed enim ut sem viverra aliquet eget. Orci porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Molestie nunc non blandit massa enim nec dui nunc. Pretium fusce id velit ut. Est ultricies integer quis auctor elit sed vulputate.</p>
+        {% elif loop.index0 == 1 %}
+        <p>Pretium fusce id velit ut tortor pretium. Blandit massa enim nec dui nunc mattis enim. Id semper risus in hendrerit gravida rutrum quisque non. Eros donec ac odio tempor orci dapibus ultrices in. A condimentum vitae sapien pellentesque habitant. Eget egestas purus viverra accumsan in nisl nisi scelerisque. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin. Felis eget velit aliquet sagittis id consectetur. Libero volutpat sed cras ornare arcu dui vivamus arcu felis. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis. Velit scelerisque in dictum non consectetur. Tellus integer feugiat scelerisque varius morbi enim nunc. Libero enim sed faucibus turpis in. Ut etiam sit amet nisl purus in.</p>
+        {% elif loop.index0 == 2 %}
+        <p>Amet nulla facilisi morbi tempus iaculis urna id. Tortor id aliquet lectus proin nibh nisl. Gravida quis blandit turpis cursus in hac habitasse platea. Arcu felis bibendum ut tristique et. Ut diam quam nulla porttitor massa id neque aliquam. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum. Neque convallis a cras semper. Metus vulputate eu scelerisque felis imperdiet proin. Rhoncus mattis rhoncus urna neque viverra justo. Fringilla urna porttitor rhoncus dolor purus non enim praesent elementum. Et malesuada fames ac turpis egestas sed tempus urna. Enim lobortis scelerisque fermentum dui. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc. Sit amet mattis vulputate enim nulla aliquet porttitor lacus. Vitae aliquet nec ullamcorper sit.</p>
+        {% endif %}
+    </div>{% endfor %}
+{% endblock main %}
