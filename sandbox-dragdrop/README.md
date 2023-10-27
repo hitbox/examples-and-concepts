@@ -26,6 +26,8 @@ machinery is working.
 - The things in dragdrop/dropzone.py are probably overkill. Since marshalling
   is required, probably just dump objects to dicts and lists and render with
   recursive Jinja macro.
+- Try making a demo with this for a Tier List.
+  https://tiermaker.com/
 
 ## build_nested/build_nested.py
 
