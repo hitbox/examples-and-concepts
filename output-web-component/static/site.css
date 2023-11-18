@@ -1,0 +1,23 @@
+html {
+    /* https://css-tricks.com/box-sizing/ */
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    /* https://css-tricks.com/box-sizing/ */
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+form {
+    width: min-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+form > * {
+    margin: 1rem 0.25rem;
+}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">{% block html %}
+    <head>{% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="color-scheme" content="dark light">{# inform client color modes asap #}
+        <title>Output Web Component</title>
+        <link rel="icon" href="data:,">{# empty favicon #}
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+        <script src="{{ url_for('static', filename='custom-output.js') }}"></script>
+    {% endblock head %}</head>
+    <body>
+        <main>{% block main %}{% endblock %}</main>
+    </body>
+{% endblock html %}</html>
